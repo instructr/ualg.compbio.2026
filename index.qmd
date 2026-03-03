@@ -1,0 +1,61 @@
+---
+title: "Computational Biology"
+author: "Isabel Duarte"
+date: "March 2026"
+output:
+  html_document:
+  smooth_scroll: true
+  fig_caption: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=FALSE, eval=TRUE)
+```
+<!-- regular html comment -->
+
+---
+
+Computational Biology course | Intro to R data analysis  (Module 1)   
+Masters in Health Sciences - Disease Mechanisms  
+Faculdade de Medicina e Ciências Biomédicas - Universidade do Algarve, Faro, Portugal    
+Isabel Duarte | giduarte at ualg dot pt | Website: [http://iduarte.eu/](http://iduarte.eu/)
+
+---
+
+## **General Information**
+
+**Learning outcomes | Knowledge, Skills, and Competences**
+
+The students will acquire basic knowledge in the application of computational analysis techniques to biological data using R.
+
+The following topics will be addressed in the 'Intro to R data analysis' (Module 1): 
+
++ **Introduction to R programming**;
++ **Descriptive statistics using R**;
++ **Brief exploratory data analysis of biological datasets**.
+
+<br>
+
+### Evaluation
+
+The **evaluation for Module 1: Intro to R data analysis** will be the **summation** of the two following evaluation criteria: 
+
+  - **A. Performance in class** measured by completing the tutorials and assignments, participation in class, and collaboration with classmates: **5 points.**   
+    
+  - **B. One final written exam** with one section of multiple choice questions, plus one section with questions to write R code for simple programming tasks: **15 points.**
+
+**Final grade improvements** will be assessed with:   
+
+  - **One individual assignment**, to be completed at home, that must be **presented and discussed in a 30 minute individual oral exam**: **20 points.**
+
+<br>
+
+### Classes documents
+
+<!-- XPTO | TO BE UPDATED -->
+
+  - Additional file required for exercises | [Mice diet dataset](data/mice_data.txt)
+
+---
+
+{{< include protocols/_0_contents_biblio.qmd >}}

@@ -1,0 +1,271 @@
+### **7. Transcriptomics**
+
+##### **Sequencing and Transcriptomics**
+
+- **What is DNA sequencing?**
+
+DNA sequencing is the process of determining the order of the four nucleotides (A, T, C, and G) that make up a DNA molecule. The sequence of nucleotides in DNA encodes genetic information that determines the traits and characteristics of an organism.
+
+Sequencing technologies have advanced significantly in recent years, making it possible to sequence the entire genomes of organisms. This has revolutionized biological research, boosting the fields of genomics, transcriptomics, and epigenomics, leading to many new discoveries and insights into the functioning of living cell.
+
+There are several different sequencing technologies available, namely:
+
+  - **Sanger sequencing:** a relatively old method that is still used for sequencing small DNA fragments;   
+  - **Next-generation sequencing (NGS):** allow for the sequencing of millions of DNA fragments in parallel, providing high-throughput and cost-effective sequencing;   
+  - **Third-generation sequencing:** such as single-molecule real-time (SMRT) sequencing and nanopore sequencing, can generate longer read lengths and are particularly useful for sequencing complex genomic regions and detecting structural variations.
+
+<br>
+
+- **What is transcriptomics?**
+
+Transcriptomics is the study of the complete set of RNA transcripts in a cell or tissue at a given moment. With the advent of high-throughput sequencing technologies, transcriptomics has become a powerful tool for studying gene expression, alternative splicing, and other aspects of RNA biology on a large scale.
+
+<br>
+
+- **Which transcriptomics technologies are currently available?**
+
+  - **Microarrays:** Microarrays are a hybridization-based technology that allow for the detection of gene expression levels of thousands of genes simultaneously. They use nucleic acid probes that are hybridized to complementary RNA molecules to detect their abundance. Microarrays are less sensitive than RNA-seq, but can be useful for detecting changes in gene expression in a high-throughput manner.
+    
+  - **RNA-sequencing (RNA-seq):** RNA-seq is a widely used transcriptomics technique that allows for the quantitative analysis of gene expression. It involves the conversion of RNA into cDNA, which is then sequenced using high-throughput sequencing technologies. RNA-seq provides high resolution and coverage of the transcriptome, allowing for the detection of low abundance transcripts, alternative splicing events, and non-coding RNAs. There are various protocols for RNA-seq library preparation, including poly(A) enrichment, ribosomal RNA depletion, and strand-specific sequencing, which can affect the accuracy and sensitivity of the results.
+
+  - **Single-cell sequencing:** Single-cell sequencing allows for the analysis of gene expression in individual cells, providing insights into cell-to-cell variability and heterogeneity. Single-cell RNA-seq (scRNA-seq) involves the isolation and sequencing of RNA from individual cells, which can reveal cell type-specific gene expression patterns and identify rare cell populations.
+
+  - **Long-read sequencing:** Long-read sequencing technologies, such as PacBio and Oxford Nanopore, can provide full-length transcript sequencing, allowing for the detection of isoforms and splice variants. Long-read sequencing can be particularly useful for identifying novel transcripts and alternative splicing events.
+    
+  - **Spatial transcriptomics:** Spatial transcriptomics is a relatively new technology that allows for the analysis of gene expression patterns within intact tissues. It involves the imaging of gene expression in situ, followed by the spatially-resolved sequencing of the corresponding regions. Spatial transcriptomics can provide insights into the spatial organization of cells and tissues and their roles in complex biological processes.
+
+<br>
+
+- **Why do we need transcriptomics? Current applications for transcriptomics studies.**
+
+Transcriptomics is an important field of research that helps us understand the expression and regulation of genes at the transcript level, which provides critical information about the biological processes that are occurring in cells and tissues. Overall, transcriptomics is a powerful tool for understanding gene expression and regulation, and has a wide range of applications in basic research, medicine, and biotechnology.
+
+Transcriptomics relevance for the biomedical research community:
+
+  - **Understand gene expression:** Transcriptomics allows researchers to study gene expression patterns in different cell types, tissues, and developmental stages, providing insight into how genes are regulated and how they contribute to different biological processes.
+
+  - **Identify novel genes and transcripts:** Transcriptomics enables the discovery of previously unknown genes and transcripts, which can provide new targets for drug discovery and help us understand the genetic basis of diseases.
+
+  - **Characterize alternative splicing:** Transcriptomics allows researchers to study alternative splicing, which is the process by which a single gene can produce multiple transcripts with different exon compositions. Alternative splicing plays a key role in generating protein diversity and can have important implications for disease.
+
+  - **Study non-coding RNAs:** Transcriptomics can be used to study non-coding RNAs, which are RNA molecules that do not code for proteins but have important regulatory functions in the cell. Transcriptomics can help us understand the roles of non-coding RNAs in gene regulation, development, and disease.
+
+  - **Compare gene expression across conditions:** Transcriptomics can be used to compare gene expression patterns across different conditions, such as disease states or drug treatments, providing insight into the molecular mechanisms underlying these conditions and identifying potential therapeutic targets.
+
+Current applications of transcriptomics studies include:
+
+  - **Gene expression profiling:** study gene expression patterns in different cell types, tissues, and developmental stages, providing insight into how genes are regulated and how they contribute to different biological processes.
+
+  - **Biomarker discovery:** identify potential biomarkers for diseases, which can be used for early diagnosis or to monitor disease progression.
+
+  - **Drug discovery:** identify potential drug targets or to screen drugs for their effects on gene expression.
+
+  - **Precision medicine:** identify genetic variants that are associated with specific diseases, allowing for more personalized and targeted treatments.
+
+  - **Functional genomics:** study the function of specific genes or to identify gene networks that are involved in specific biological processes.
+
+<br>
+
+- **What are the challenges with transcriptomics data analyses?**
+
+Transcriptomics data analysis can be challenging due to several factors, including the complexity of the data, the variety of platforms and methods available, and the need for advanced computational tools and statistical analyses. Some of the main challenges associated with transcriptomics data analysis are:
+
+  - **Data quality:** Transcriptomics data can be affected by various sources of noise and variability, including technical factors such as batch effects, platform-specific biases, and low signal-to-noise ratios. Ensuring data quality is critical for accurate downstream analysis.
+
+  - **Data pre-processing:** Transcriptomics data requires preprocessing to correct for technical artifacts, normalize for differences in sequencing depth, and filter out low-quality reads. There is often no consensus on the best way to preprocess data, and different approaches can lead to different results.
+
+  - **Data analysis:** Transcriptomics data analysis involves identifying differentially expressed genes, clustering genes by expression pattern, and identifying enriched biological pathways. However, the choice of statistical tests, normalization methods, and downstream analyses can greatly affect the results and interpretation of the data.
+
+  - **Interpretation:** Transcriptomics data can produce large amounts of data, making it challenging to interpret the results and identify meaningful biological insights. Additionally, the interpretation of results can be affected by biases in the selection of genes or pathways for analysis.
+
+  - **Integration:** Integrating transcriptomics data with other types of omics data, such as genomics or proteomics, can be challenging due to differences in data types and the need for specialized computational tools.
+
+<br>
+
+- **Differential gene expression analysis: what is it and why do we need it?**
+
+Differential gene expression analysis is a technique that involves comparing the expression levels of each gene across different conditions to identify genes that are up- or down-regulated in response to a particular treatment or condition.
+
+Differential gene expression analysis allows researchers to identify the genes and biological pathways that are affected by a particular condition or treatment (for example, to identify the genes that are up- or down-regulated in diseased tissues compared to healthy tissues, or in response to a particular treatment or drug). This can provide insight into the molecular mechanisms underlying diseases, identify potential therapeutic targets, or identify the genes and pathways that are affected by a particular drug.
+
+There are several statistical methods and software tools available for performing differential gene expression analysis in R, including **DESeq2**, **edgeR**, and **limma**. These tools use statistical models to identify genes that are significantly differentially expressed between conditions.
+
+---
+
+<br>
+
+#### **Hands-on microarray data analysis in R**
+
+> **The scientific experiment** | Imagine that you are interested in studying ovarian cancer, in particular, the effect of TGF-beta on the growth of human ovarian cancer cells.   
+
+**Motivation** | Advanced ovarian cancer is one of the most lethal gynecologic malignancies. Ovarian cancer cells are known to have diminished response to TGF-beta, but it remains unclear whether TGF-beta can modulate ovarian cancer cell growth in an indirect manner through cancer-associated fibroblasts (CAFs).  
+
+**Experimental approach** | Using transcriptome profiling analyses on TGF-beta-treated ovarian fibroblasts, you will be able to identify the gene signature of TGF-beta-regulated genes in the ovarian microenvironment, hence helping with understanding the role of TGF-beta in ovarian cancer progression.  
+
+**Data** | GSE40266 dataset from GEO (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40266).   
+
+**Experimental design** | The human telomerase-immortalized ovarian fibroblast line NOF151 was treated with 5ng/mL of either TGF-beta-1 or TGF-beta-2. Total RNA was isolated from **control samples** and **TGF-beta-treated fibroblasts samples** at 48 hours post-treatment, followed by cDNA synthesis, IVT and biotin labeling. Samples were then hybridized onto Affymetrix Human Genome U133 Plus 2.0 microarrays. **For each treatment group, three independent samples were prepared for the microarray experiment.**
+
+**Our analysis** | To conduct a transcriptomics analysis of this microarray dataset, we must load the data, visualize it, process it, and run a differential gene expression analysis to find genes that are differentially regulated between the 3 experimental groups: **control** cells (untreated), **TGFb1** (cells treated with TGF-beta 1), and **TGFb2** (cells treated with TGF-beta 2) .
+
+<br>
+
+##### **Guided analysis tutorial**
+
+**Note** | Performing a transcriptomics analysis using R requires intermediate programming skills. Since this course aims at introducing R to the students, we will run the analysis from a guided interactive tutorial, step by step.    
+The tutor will be explaining in detail each command. Do not hesitate to ask if anything is not clear to you.   
+In the end, there is a small quiz to help you diagnose your difficulties.
+
+**Good work!**
+
+```{r run_transcriptomics, eval=FALSE, echo=TRUE}
+
+learnr::run_tutorial('transcriptomics2023', package = 'ualg.compbio')
+
+```
+
+<br>
+
+---
+
+##### **For future reference | R script used in the transcriptomics guided tutorial**
+
+For your reference, here is the R code snippet used for the transcriptomics analysis.
+
+```{r transcriptomics_code, eval=FALSE}
+# Transcriptomics microarray analysis
+# Computational Biology - Module 1
+# Masters Biomedical Sciences - UAlg
+#
+# R script generated from GEO2R
+# Adapted, Customized and Improved by: Isabel Duarte 
+# Date: March 2023
+################################################################
+###         Microarray Transcriptomics Data Analysis         ###
+###            Differential Expression with limma            ###
+################################################################
+
+# Install Bioconductor (if not yet installed)
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+### Install packages from Bioconductor 
+BiocManager::install("GEOquery", version = "3.8")
+BiocManager::install("limma", version = "3.8")
+
+### Load packages
+library(Biobase)
+library(GEOquery)
+library(limma)
+
+# Set working directory to the folder where the class data is located
+setwd("/Users/isabelduarte/Desktop/OneDrive - Universidade do Algarve/UAlg/3.classes/bioComputacional_2022/protocols2022/")  # Change this path to the path from your system.
+
+# IMPORTANT: Make sure you create a directory inside your working directory named "R-output"
+  # to save the files download from GEO, and the results from the data analysis.
+
+###############################################################
+### Load microarray data, and annotation, from a GEO series ###
+###############################################################
+gset <- getGEO("GSE40266", destdir="R-output/", GSEMatrix =TRUE, AnnotGPL=TRUE, getGPL = TRUE)
+
+# inspect gset - find what type of object it is
+gset
+class(gset)
+length(gset)
+
+# The list has only 1 ExpressionSet object, so extract it from its list format 
+gset <- gset[[1]]
+class(gset)
+View(gset)
+
+# Discover the measured variable names for which there are annotation data in the gset object
+fvarLabels(gset)
+# make proper column names to match the names that will be used by limma package (toptable function)
+fvarLabels(gset) <- make.names(fvarLabels(gset))
+
+### Log2 transform the expression values
+# keep a copy of the non-log transformed values
+ex_raw <- exprs(gset)
+
+# Before log transforming the values, we will auto-detect if the values are already in log space by looking at the distribution (quantiles) of the expression values.
+# create a vector of quantiles 
+qx <- as.numeric(quantile(ex_raw, probs=c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=TRUE))
+LogC <- (qx[5] > 100) ||
+  (qx[6]-qx[1] > 50 && qx[2] > 0) ||
+  (qx[2] > 0 && qx[2] < 1 && qx[4] > 1 && qx[4] < 2)
+# log transform the expression values
+if (LogC) {
+  ex_raw[which(ex_raw<= 0)] <- NaN
+  exprs(gset) <- log2(ex_raw)
+}
+
+# Compare the expression matrix BEFORE and AFTER making the values log2
+   # (columns are arrays (samples), rows are probesets (genes))
+head (ex_raw)       # Before Log2
+head (exprs(gset))  # After Log2
+
+
+############################################################
+### Differential Expression analysis using limma package ###
+############################################################
+# Set up the data and group names for all samples
+gsms <- "000111222"
+sml <- unlist (strsplit(gsms, ""))
+sml <- paste("G", sml, sep="")    # set group names
+fl <- as.factor(sml)
+gset$description <- fl
+
+# Create a design matrix to use with limma - Linear Model fitting package
+design <- model.matrix(~ description + 0, gset)
+colnames(design) <- levels(fl)
+View(design)
+
+# Fit the gene expression values with linear models, using the design matrix
+fit <- lmFit(gset, design)   
+View(fit)
+
+# Create the contrast matrix - with the comparisons that we want to make for differential expression
+cont.matrix <- makeContrasts(G2-G0, G1-G0, G2-G1, levels=design)
+fit2 <- contrasts.fit(fit, cont.matrix)  # Fit the contrast matrix to the matrix that was previously fit
+fit2 <- eBayes(fit2, 0.01)               # Apply eBayes error correction
+
+# Extract all the differentially expressed genes (even the ones bellow significance), and only the 500 most significant
+tT <- topTable(fit2, adjust="fdr", sort.by="B", number=nrow(fit2))
+tT500 <- topTable(fit2, adjust="fdr", sort.by="B", number=500)
+head (tT500)
+colnames(tT500)
+View(tT500)
+
+# Keep only the columns with data that we are interested in
+tT <- subset(tT, select=c("ID","Gene.symbol","Gene.title","G2...G0","G1...G0","G2...G1","AveExpr","adj.P.Val","P.Value","F"))
+tT500 <- subset(tT500, select=c("ID","Gene.symbol","Gene.title","G2...G0","G1...G0","G2...G1","AveExpr","adj.P.Val","P.Value","F"))
+View(tT500)
+write.table(tT, file=stdout(), row.names=F, sep="\t")
+write.table(tT500, file=stdout(), row.names=F, sep="\t")
+
+#####################
+### Plot the data ###
+#####################
+# Boxplot
+
+# order samples by group
+ex <- exprs(gset)[ , order(sml)]
+sml <- sml[order(sml)]
+fl <- as.factor(sml)
+labels <- c("control","tgfB1","tgfB2")
+
+# set parameters and draw the plot
+palette(c("#dfeaf4","#f4dfdf","#f2cb98", "#AABBCC"))
+par(mar=c(2+round(max(nchar(sampleNames(gset)))/2),4,2,1))
+title <- paste ("GSE40266", '/', annotation(gset), " selected samples", sep ='')
+
+boxplot(ex, boxwex=0.6, notch=T, main=title, outline=FALSE, las=2, col=fl)
+legend("topleft", labels, fill=palette(), bty="n", cex = 0.8)
+
+```
+
+
+
+___ END ___
+

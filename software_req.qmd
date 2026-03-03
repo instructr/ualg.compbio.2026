@@ -1,0 +1,27 @@
+## **Software requirements** 
+
+To follow the these classes, you will use use **R** and **RStudio**, and will need to **bring your own laptop** (not a tablet).
+
+
+**You have 2 options:**   
+
+**Option 1** | Use RStudio Server provided in class (**preferred option**)
+
+  - Connect to the `Eduroam` network at UAlg.
+  - Open your favorite browser and access the web address provided in class.
+  - Login with the Computational Biology credentials provided to you in class.
+  - NOTE | If you need to access the RStudio Server from outside the university, you must turn on the **VPN**.
+    
+    - Install the university's VPN first (if not already installed) from <https://www.ualg.pt/suporte-informatico>.
+    - Follow the instructions in: *"Como aceder remotamente à UAlg? Como posso configurar a VPN?"*.
+    - Turn the VPN on (using your student credentials: student number and password).
+    - Access the web address (provided in class) and login with the Computational Biology credentials provided to you in class.
+
+
+**Option 2** | Install **R** and **RStudio** in your personal computer
+  
+  - **First install R** | <https://www.r-project.org/>    
+  To download R, please choose any CRAN mirror from the following url: <https://cran.r-project.org/mirrors.html>
+  - **Next install RStudio** | <https://posit.co/download/rstudio-desktop/#download>
+
+---

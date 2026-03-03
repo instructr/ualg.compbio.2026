@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Computational Biology | 2026"
+  navbar:
+    search: true
+    tools:
+      - icon: house-heart-fill
+        menu:
+          - text: Universidade do Algarve
+            url: https://www.ualg.pt/  
+    left:
+      - href: index.qmd
+        text: "General Information"
+      - href: software_req.qmd
+        text: "Software requirements"
+      - href: protocols.qmd
+        text: "Protocols"
+          
+  back-to-top-navigation: true
+  page-footer: 
+    left: "Copyright 2026, Isabel Duarte" 
+    right: 
+      - icon: github
+        href: https://github.com/instructr/ualg.compbio.2026
+    background: light
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-expand: 2
+
+editor: source

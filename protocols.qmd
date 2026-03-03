@@ -1,0 +1,35 @@
+---
+title: "Computational Biology | Protocols general info"
+output:
+  html_document:
+    smooth_scroll: true
+    fig_caption: false
+---
+
+## **Hands-on Protocols** 
+
+Welcome to Module 1 of the Computational Biology class. This course is ambitious. You will be challenged to learn many new concepts in a short amount of time.
+Do not hesitate to ask for help in order to gain the most out of these classes. 
+
+**These classes are organized by protocols to be completed on each day:**
+
+- first you will get a brief introduction to R programming;   
+- then you will practice R by analysing a dataset using descriptive statistics, and learning some plotting functions to visualize the data;
+- you will have a self-assessment exam to test your newly acquired R programming knowledge, and identify possible difficulties;
+- finally, you will proceed with a Mini-project where you will perform a brief Exploratory Data Analysis (EDA) using R.
+
+
+*Keep calm and stay curious.*
+
+---
+
+<!-- Protocols in individual tabs -->
+:::{.panel-tabset}
+
+{{< include protocols/_1_intro_to_R.qmd >}}
+{{< include protocols/_2_recap_R.qmd >}}
+{{< include protocols/_3_practice_R.qmd >}}
+{{< include protocols/_4_self_eval.qmd >}}
+{{< include protocols/_5_mini_project.qmd >}}
+
+:::

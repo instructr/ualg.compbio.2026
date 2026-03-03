@@ -1,0 +1,93 @@
+## **Prerequisites**
+
+To attend these classes, students should be familiar with the following basic statistical concepts:
+
+  + Basic concepts in statistics: Univariate and Bivariate analysis
+  + Categorical data (Nominal or Ordinal) vs Numeric data (Discrete or Continuous)
+  + Descriptive/Exploratory studies: Mean, Median, Min, Max, Standard deviation, Variance, Mode, Interquartile range
+  + Linear regression and Correlation coefficient  (Pearson and Spearman)
+  + Inferential studies
+  + Parametric vs Non-Parametric tests
+  + Z-score (Standard score)
+  + Hypothesis testing (Null hypothesis and Alternative hypothesis)
+  + Unilateral vs Bilateral tests
+  + P-value
+
+<br>
+
+## **Syllabus**
+    
+  - **1. Brief recap of basic statistics concepts**    
+  - **2. Introduction to R**
+      + Introduction to R programming
+      + Descriptive statistics in R
+      + Hypothesis testing in R
+      + Statistical significance in R
+  - **3. Mini-project: Exploratory data analysis using R**
+      + Tidy data concept: How to organize data into tidy tables
+      + Visualization of descriptive statistics, and variable distributions
+      + Principal Component Analysis (PCA) for multidimensional reduction
+      + Fitting simple linear models
+      + Finding and visualizing correlations
+      + Strategies to derive knowledge from data
+      + Others (according to students requests)
+
+<br>        
+
+## **Pedagogical goals**
+
+At the end of Module 1, the students will be able to:
+
+  - **1. Biostatistics:** 
+    1. Identify the type of a variable (Numeric - Continuous or Discrete, Categorical - Ordinal or Nominal);
+    2. Formulate hypotheses for hypothesis testing (t-test); 
+    3. Decide between bilateral and unilateral testing;
+    4. Calculate and interpret the p-value of a test.
+  - **2. Introduction to R:**
+    1. Create an RStudio project;
+    2. Install packages from major repositories, namely CRAN and Bioconductor;
+    3. Identify 4 types of data structures available in R: Vectors, Matrices, Data frames, and Lists;
+    4. Recognize the 4 main vector data types: Logical (`TRUE` or `FALSE`), Numeric (e.g. `1,2,3…`), Character (e.g. `“Universidade”, “do”, “Algarve”`), and Complex (e.g. `3+2i`);
+    5. Obtain help regarding R functions (using `?` or `help`);
+    6. Create vectors;
+    7. Assign results to named variables using the assignment operators `<-` and `=` ;
+    8. Convert between data types;
+    9. Understand vectorized arithmetics, i.e. operations between vectors are applied element-wise; 
+    10. Understand vector recycling, i.e. if an operation is conducted between vectors of different length, the elements from the shorter vector are reused from the beginning;
+    11. Construct code iterations using `for` loops; 
+    12. Construct conditional statements (`if` statements);
+    13. Load a dataset in R;
+    14. Inspect the data loaded;
+    15. Obtain information about the dimensions of the dataset, such as the number of rows and number of columns;
+    16. Subset a dataset based on row/column number (with `[]`), or based on column name (with `$`);
+    17. Obtain summary statistics on the dataset (mean, maximum, minimum, quartiles, standard deviation, and variance);
+    18. Graphically explore the data with boxplots and histograms; 
+    19. Export results to a file (data analyses and figures); 
+    20. Save the workspace with all analysis' results in a `.Rdata` file;
+    21. Understand hypothesis testing: interpreting the p-value;
+  - **Mini-project: Exploratory data analysis using R**
+    1. XPTO_Change_here;
+    2. XPTO_Change_here;
+    
+
+## **Bibliography**
+
+- **Online resources and Bibliography (for future learning)**
+
+  - **Websites**
+
+    - [R Project](http://www.r-project.org) (The developers of R.)   
+    - [Quick-R](http://www.statmethods.net) (Roadmap and R code to quickly use R.)  
+    - [R-bloggers](https://www.r-bloggers.com/) (Great resource for posts related to alternative ways to do the same thing in R.)
+    - [Bioconductor workflows](http://bioconductor.org/packages/release/BiocViews.html#___Workflow) (R code for pipelines of genomic analyses.)
+
+
+  - **Free Online Books**
+
+    - [R for Data Science](https://r4ds.hadley.nz/) (Hadley Wickham, Mine Cetinkaya-Rundel & Garrett Grolemund. A great book for **structured learning** of R for data science, starting from simple concepts and building up step by step.)
+    - [Modern Statistics for Modern Biology](https://www.huber.embl.de/msmb/) (Wolfgang Huber and Susan P. Holmes. Great book to **learn Biostatistics using R**.)
+    - [Introduction to Data Science: Data Wrangling and Visualization with R](https://rafalab.dfci.harvard.edu/dsbook-part-1/) (Rafael A. Irizarry. High-quality R code, with clear and rigorous explanations, demonstrating **how to format data and visualise** it using `ggplot2`.)
+    - [Introduction to Data Science: Statistics and Prediction Algorithms Through Case Studies](https://rafalab.dfci.harvard.edu/dsbook-part-2/) (Rafael A. Irizarry. Hands-on tutorials focused on learning how to use **R for data analysis** using carefully chosen case studies, where data analysis brings information to light.)
+    - [Cookbook for R](http://www.cookbook-r.com/) (Winston Chang. Well-structured R scripts (practical “recipes”) for common programming tasks.)
+
+---

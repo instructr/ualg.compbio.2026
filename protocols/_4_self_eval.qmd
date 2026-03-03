@@ -1,0 +1,31 @@
+### **4. Self-evaluation**
+
+#### **Self-evaluation exam**
+
+The first task for today is to complete an individual self-evaluating exam, where you will have **one hour** to answer some data analysis questions using R. 
+This is **not for performance evaluation**, meaning that the correctness of your answers will not be evaluated, but your **application, participation, helping your colleagues** will be evaluated. 
+It is mostly intended for you to identify your difficulties and consolidate knowledge.
+
+1. For this exam, please install the `ualg.compbio` package:
+
+```{r install_compbio_package, eval=FALSE, echo=TRUE}
+
+# Make sure you have the package `pak` installed:
+install.packages("pak")
+
+# Now you can install the ualg.compbio package from GitHub:
+pak::pkg_install("instructr/ualg.compbio")
+
+```
+
+2. Run the `self_eval_exam` from the `ualg.compbio` package:
+
+```{r run_self_eval, eval=FALSE, echo=TRUE}
+
+learnr::run_tutorial("self_eval_exam", package = "ualg.compbio")
+
+```
+
+3. Please complete the exam. You have **60 minutes**.
+
+---
