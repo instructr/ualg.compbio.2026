@@ -64,11 +64,13 @@ At the end of Module 1, the students will be able to:
     18. Graphically explore the data with boxplots and histograms; 
     19. Export results to a file (data analyses and figures); 
     20. Save the workspace with all analysis' results in a `.Rdata` file;
-    21. Understand hypothesis testing: interpreting the p-value;
+    21. Understand hypothesis testing: interpreting the p-value.
   - **Mini-project: Exploratory data analysis using R**
-    1. XPTO_Change_here;
-    2. XPTO_Change_here;
-    
+    1. Inspect and assess the structure and quality of a dataset;
+    2. Perform structured exploratory data analysis using appropriate visualisations;
+    3. Interpret distributions, group differences, and correlations in biological terms;
+    4. Recognise multivariate patterns and potential confounding effects;
+    5. Translate exploratory findings into hypotheses for downstream modelling. 
 
 ## **Bibliography**
 

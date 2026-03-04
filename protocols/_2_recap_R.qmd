@@ -5,22 +5,30 @@
 After finishing the introduction to R with `swirl`, please recall the following information and hints about R and R programming. 
 
 1. R is case sensitive - be aware of capital letters (**b** is different from **B**).
+
 2. All R code lines starting with the **#** (hash) sign are interpreted as comments, and therefore are not evaluated.  
+
 ```{r comments, tidy=FALSE}
 # This is a comment
 # 3 + 4   # this code is not evaluated, so and it does not print any result
 2 + 3     # the code before the hash sign is evaluated, so it prints the result (value 5)
 ```
+
 3. Expressions in R are evaluated from the innermost parenthesis toward the outermost one (following proper mathematical rules).
+
 ```{r parenthesis}
 # Example with parenthesis:
 ((2+2)/2)-2
 # Without parenthesis:
 2+2/2-2
 ```
+
 4. Spaces in variable names are not allowed --- use a dot `.` or underscore `_` to create longer names to make the variables more descriptive, e.g. `my.variable_name`.  
+
 5. Spaces between variables and operators do not matter: `3+2` is the same as `3 + 2`, and `function (arg1 , arg2)` is the same as `function(arg1,arg2)`.  
+
 6. A new line (enter) ends one command in R. If you want to write 2 expressions/commands in the same line, you have to separate them by a `;` (semi-colon).
+
 ```{r semicolon, tidy=FALSE}
 #Example:
 3 + 2 ; 5 + 1  
@@ -86,8 +94,6 @@ my_letters[,1]
 
 ```
 
-
-
 <br>
 
 ##### **Working directory**
@@ -101,7 +107,6 @@ getwd() # find out the path to your working directory
 setwd("/home/isabel") # example of setting a new working directory path
 ```
 
-
 ##### **Saving your workspace in R**
 
 The R environment is controlled by hidden files (files that start with a dot `.`) in the start-up directory: `.RData`, `.Rhistory` and `.Rprofile` (optional).
@@ -111,6 +116,7 @@ The R environment is controlled by hidden files (files that start with a dot `.`
 - **.Rprofile** useful for advanced users to customize RStudio behavior.
 
 These files can be renamed: 
+
 ```{r save, eval=FALSE, tidy=FALSE}
 # DO NOT RUN
 save.image (file=“myProjectName.RData”)
@@ -157,13 +163,12 @@ Depending on the repository from which you want to install a package, there are 
 
 After installing a package, you must load it to make its contents (functions and/or data) available. The loading is done with the function `library()`. Alternatively, you can prepend the name of the package followed by `::` to the function name to use it (e.g. `ggplot2::qplot()`).
 
-
 ```{r packages, eval=FALSE}
 
-install.packages("ggplot2")   # install the package called ggplot2 from CRAN
+# install.packages("ggplot2")   # install the package ggplot2 (if not installed)
 library ("ggplot2")            # load the library ggplot2 
 
-help (package=ggplot2)         # help(package="package_name") to get help about a specific package
+help (package=ggplot2)         # help(package="package_name") to get help about any package
 vignette ("ggplot2")           # show a pdf with the package manual (called R vignettes)
 ```
 
@@ -175,7 +180,7 @@ RStudio Projects are a great functionality, easing the transition between datase
 
     File > New Project... > New Directory > New Project
     Directory name: compBiol_module1
-    Create project as a subdirectory of: ~/
+    Create a project as a subdirectory of: ~/
                                Browse... (directory/folder to save the class data)
     Create Project
     

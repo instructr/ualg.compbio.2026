@@ -1,6 +1,6 @@
 ### **5. Mini_project in R**
 
-#### **Exploratory data analysis**
+#### **Exploratory Data Analysis (EDA): A Stepwise Scientific Approach**
 
 Exploratory data analysis (EDA) is the first structured step in any data-driven project.
 Its purpose is not hypothesis testing, but understanding:
@@ -11,24 +11,39 @@ Its purpose is not hypothesis testing, but understanding:
 * What are the main distributions and relationships?
 * Are there obvious patterns or anomalies?
 
-#### **The zebrafish dataset**
+#### **Step 1 | Define the biological question**
 
-In this project, we will analyse a **simulated dataset** called `zebrafish`. It represents an experiment in which animals from different strains were raised under controlled conditions. At a defined developmental stage, they were assigned to different groups: wild-type (WT) controls and genetically modified lines (knock-out or overexpression of a gene of interest).
+Exploratory Data Analysis (EDA) begins with a biological question.
 
-At the end of the study, each animal was measured using a standard protocol. Researchers recorded several morphological measurements, as well as the biological sex to study potential sex differences, as well as the year of the experiment to account for possible batch effects.
+In this project, we analyse a **simulated zebrafish dataset** representing an experiment where animals from different strains were raised under controlled conditions. Some are wild-type (WT) controls, others are genetically modified (knock-out or overexpression of a gene of interest).
 
-The dataset combines experimental factors (strain, treatment, year) with quantitative morphological measurements, allowing the study of how genetic modifications affect growth and body traits, including potential differences between sexes.
+At the end of the study, several morphological traits were measured, along with biological sex and experimental year.
+
+Before analysing the data, we ask:
+
+- Do strains differ morphologically?
+- Are there sex-based differences?
+- Do traits scale proportionally with body size?
+- Could genetic manipulation affect growth patterns?
+
+**EDA is not hypothesis testing, it is structured scientific observation.**
 
 ---
 
-#### **1. Load packages and data**
+#### **Step 2 | Inspect the dataset structure**
 
-We begin by loading the required packages and the dataset.
+We first load required packages and the dataset.
 
 ```{r setup, warning=FALSE, message=FALSE}
 
 #Load required package
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(patchwork)
+library(GGally)
+library(recipes)
 
 # Reading and formatting the data
 zebrafish <- 
@@ -36,16 +51,11 @@ zebrafish <-
 
 ```
 
-The `tidyverse` provides tools for data manipulation and visualization.
-
-
-#### **2. Inspect the structure of the data**
-
-Before analysing anything, we must understand the structure of the dataset.
+Now we inspect its structure.
 
 ```{r view_data}
 
-# Look at the data (uncomment to view)
+# Look at the data (uncomment to view the table)
 # View(zebrafish)
 
 # Describe the data structure
@@ -54,14 +64,39 @@ dim(zebrafish)
 
 ```
 
-This allows us to see:
+Here we determine:
 
 * Number of observations (rows)
 * Number of variables (columns)
 * Variable types (numeric, factor, etc.)
 * Presence of missing values
 
-#### **3. Missing data assessment, and formatting of variable types**
+> Understanding structure precedes interpretation.
+
+##### **Tiday Data: Concept, Structure & Semantics**
+
+Tidy data aligns the structure of a dataset with its meaning. It follows three key principles:
+
+  1. Each **variable** is a column.
+  2. Each **observation** is a row.
+  3. Each **value** is a single cell.
+
+![](images/tidydata_1.jpg)
+
+This structure makes analysis more efficient by ensuring that variables and observations are consistently represented.
+
+Data consists of **values** that belong to:
+
+  - **Variables**: Attributes measured across units (e.g., height, score).
+  - **Observations**: Measurements for a single unit (e.g., a person, a test result).
+
+Different structures can represent the same data. For instance, **wide** and **long** formats can hold identical information but differ in layout. A **tidy format** ensures that each row represents a distinct observation, making relationships between values explicit.
+
+Illustrations from the Openscapes blog: Tidy Data for reproducibility, efficiency, and collaboration by Julia Lowndes and Allison Horst (<https://openscapes.org/blog/2020-10-12-tidy-data/>)
+
+---
+
+#### **Step 3 | Assess data quality and prepare the dataset**
 
 Missing data can affect summary statistics and models. We quantify how much *"missingness"* exists in each variable.
 
@@ -76,15 +111,16 @@ This gives the number of missing values per variable.
 
 In real analyses, we would decide whether to:
 
-* Remove incomplete rows,
-* Impute missing values,
-* Or model missingness explicitly.
+  * Remove incomplete rows,
+  * Impute missing values,
+  * Or model missingness explicitly.
 
-For this exploratory analysis, we remove incomplete cases (`NAs`):
+We remove incomplete cases for this exploratory exercise:
 
 ```{r remove_nas}
 
-zebrafish_clean <- zebrafish |>
+zebrafish_clean <- 
+  zebrafish |>
   drop_na()
 
 # Now we transform the character variables into factors 
@@ -95,9 +131,44 @@ zebrafish_clean |>
          sex = as.factor(sex))
 ```
 
-#### **Summary statistics of variables**
+> EDA always includes verification of data integrity.
 
-We now examine central tendency and dispersion of numerical variables, as well as levels of the categorical (factorial) variables (strain, treatment, and sex).
+---
+
+#### **Step 4 | Explore one variable at a time (univariate analysis)**
+
+**Step 4 | Explore one variable at a time (univariate analysis)**
+
+Understanding **distributions** is fundamental in exploratory data analysis. Before comparing groups or studying relationships between variables, we must first understand how each variable behaves on its own.
+
+::: {.callout-tip collapse="true" title="Recall Continuous variables"}
+
+**Continuous variables** (numerical measurements such as body length, body width, caudal fin length, or body mass) can take a wide range of values. For these variables we want to understand:
+
+* where most observations are located (central tendency), and
+* how spread out the values are (dispersion).
+
+Useful plots for continuous variables include:
+
+* **Histograms**, which show the frequency of values across intervals
+* **Density plots**, which show the overall shape of the distribution
+* **Boxplots**, which summarise the median, interquartile range, and potential outliers
+
+:::
+
+::: {.callout-tip collapse="true" title="Recall Categorical variables"}
+
+**Categorical variables** (such as strain, treatment, or sex) represent groups or categories rather than numerical measurements. For these variables we want to know how many observations fall into each category.
+
+Popular plots for categorical variables include:
+
+* **Barplots**, which show the number of observations per category
+
+To begin this step, we will examine the **distribution of each variable individually**, together with their **summary statistics**.
+For numerical variables, we will look at measures of **central tendency** (such as the mean and median) and **dispersion** (such as the range and quartiles).
+For categorical variables, we will examine the **levels (categories)** present in the dataset — in this case **strain**, **treatment**, and **sex** — and count how many individuals belong to each group.
+
+:::
 
 ```{r summary}
 
@@ -107,15 +178,13 @@ summary(zebrafish_clean)
 
 This provides a compact overview of scale and variability.
 
+However, visualizing the distributions of these variables is very common and, often, most insightful than just looking at a table with values.
 
-#### **4. Visualizing variable distributions**
+The visualizations used depend not only on the data type (numerical vs categorical for example), but also on the biological questions that we want to ask the data.
 
-There are a number of questions you could ask about differences 
-between groups.
+##### A first useful question to ask the data is: how many individuals belong to each strain?
 
-#### **Distribution of strains**
-
-A first useful question: how many individuals belong to each strain?
+Since strain is a categorical variable, we examine how body mass differs between groups.
 
 ```{r count_strain}
 
@@ -144,14 +213,38 @@ ggplot(zebrafish_clean, aes(x = strain, fill = strain)) +
 
 ```
 
-This helps us detect imbalance between groups, which may influence modelling later.
+> This helps us detect imbalance between groups, which may influence modelling later.
 
+##### **Another relevant question is about the body mass distribution.** 
 
-#### **Distribution of body mass by strain**
+Since body mass is a numeric variable, we will look at the histogram of body mass. 
 
-Understanding distributions is fundamental in EDA.
+We can then color it by some other categorical variable. In this case, we will group and color the histogram per strain.
 
-Since strain is a categorical variable, we examine how body mass differs between groups.
+```{r mass_hist, warning=FALSE, message=FALSE}
+
+mass_hist <- ggplot(
+  data = zebrafish_clean,
+  aes(x = body_mass_g)
+) +
+  geom_histogram(
+    aes(fill = strain),
+    alpha = 0.5,
+    position = "identity",
+    bins = 30
+  ) +
+  scale_fill_manual(values = c("tan", "steelblue1", "violetred")) +
+  labs(
+    x = "Body mass (g)",
+    y = "Frequency",
+    title = "Body mass distribution"
+  )
+
+mass_hist
+
+```
+
+Another way to visualize this distribution, is a boxplot, also colored (and grouped) by zebrafish strain.
 
 ```{r box_mass}
 
@@ -167,33 +260,8 @@ ggplot(zebrafish_clean, aes(x = strain, y = body_mass_g, fill = strain)) +
 
 This allows us to compare medians, variability, and potential outliers across strains.
 
-#### **Body mass histogram** 
-
-```{r mass_hist}
-
-mass_hist <- ggplot(
-  data = zebrafish_clean,
-  aes(x = body_mass_g)
-) +
-  geom_histogram(
-    aes(fill = strain),
-    alpha = 0.5,
-    position = "identity"
-  ) +
-  scale_fill_manual(values = c("tan", "steelblue1", "violetred")) +
-  labs(
-    x = "Body mass (g)",
-    y = "Frequency",
-    title = "Body mass distribution"
-  )
-
-mass_hist
-
-```
-
-#### **Sex differences in body mass**
-
-We explore whether body mass differs by sex.
+However, in many biomedical datasets, sex-based differences are substantial and biologically meaningful.
+So, we should also explore **whether body mass differs by zebrafish sex**. 
 
 ```{r sex_mass}
 
@@ -207,11 +275,13 @@ ggplot(zebrafish_clean, aes(x = sex, y = body_mass_g, fill = sex)) +
 
 ```
 
-In many biological datasets, sex-based differences are substantial and biologically meaningful.
+>This shows that zebrafish females tend to have lower body weight than males overall.
 
-#### **Caudal fin length histogram**
+##### **How does the size of the fin change with strain and sex?** 
 
-```{r fin_hist}
+Let's look at the caudal fin length histogram, colored by strain.
+
+```{r fin_hist, warning=FALSE, message=FALSE}
 
 fin_hist <- ggplot(
   data = zebrafish_clean,
@@ -220,7 +290,8 @@ fin_hist <- ggplot(
   geom_histogram(
     aes(fill = strain),
     alpha = 0.5,
-    position = "identity"
+    position = "identity",
+    bins = 30
   ) +
   scale_fill_manual(values = c("cyan3", "orchid", "yellow3")) +
   labs(
@@ -233,9 +304,10 @@ fin_hist
 
 ```
 
-#### **Caudal fin length boxplots + jitter**
+Or looking at the caudal fin length boxplots, per strain, but showing all the individual datapoints to make the plot more intuitive. 
 
 ```{r fin_box}
+
 fin_box <- ggplot(
   data = zebrafish_clean,
   aes(x = strain,
@@ -262,9 +334,27 @@ fin_box
 
 ```
 
-#### **Correlation structure**
+>At this stage we should ask:
+Do strains appear different? Are distributions symmetric? Are there clear outliers? Can the caudal fin length be used as a classifier for zebrafish strains? Why?
 
-We compute a simple correlation matrix for numeric variables.
+---
+
+#### **Step 5 | Compare groups**
+
+Group comparisons refine our biological questions.
+
+We can start to compare groups of samples by looking at the values from a **correlation matrix**. 
+So we compute a simple **correlation matrix for numeric variables**.
+
+::: {.callout-tip collapse="true" title="More about correlation"}
+
+Correlation helps us detect:
+
+  - Redundancy between variables 
+  - Strong linear associations 
+  - Potential multicollinearity (useful for future modelling)
+  
+:::
 
 ```{r correlation_fish}
 
@@ -274,25 +364,19 @@ zebrafish_clean |>
 
 ```
 
-Correlation helps us detect:
+We should then examine relationships between variables. 
 
-* Redundancy between variables
-* Strong linear associations
-* Potential multicollinearity for future modelling
+##### Let's start by looking at two continuous variables: body length and body width, colored per individual strains, using a scatterplot.
 
-
-
-<br>
-
-#### **Relationship between body length and body width**
-
-We now examine relationships between two continuous variables: body length and body width in each strain.
+::: {.callout-tip collapse="true" title="More about scatterplots"}
 
 A scatterplot helps detect:
 
-* Linear or non-linear relationships
-* Clustering by strain
-* Separation between groups
+  * Linear or non-linear relationships
+  * Clustering by strain
+  * Separation between groups
+
+:::
 
 ```{r len_width1}
 
@@ -311,7 +395,7 @@ ggplot(
 
 ```
 
-This visualization already suggests that strains differ morphologically. **But lets fit a linear model to each strain.** 
+This visualization already suggests that strains differ morphologically. **But lets fit a linear model to each strain to check if the effect is real.** 
 
 ```{r len_width}
 ggplot(
@@ -342,9 +426,9 @@ ggplot(
 
 ```
 
-This plot shows that the strains indeed differ morphologically, with a positive correlation in each of the three strains. 
+This plot shows that the strains seem to differ morphologically, with a positive correlation between body length and body width in each of the three strains. 
 
-**So, what do we expect to find when we fit a linear model into the the combined dataset, i.e. not separated by strain?** Let's see this plot.
+**So, what do we expect to find when we fit a linear model to the non-stratified data, i.e. not separated by strain?** Let's evaluate this plot.
 
 ```{r overall_len}
 
@@ -372,19 +456,23 @@ ggplot(
 Now it seems that, for the whole group there is a **negative correlation** in zebrafish between body length and body width, when the data is pooled together, which is the opposite of what we see in the individual strain data.
 
 This is called **Simpson’s paradox** which is a statistical phenomenon in which a trend observed in separate groups reverses or disappears when the groups are combined.
-
 In other words, a relationship between two variables may appear positive (or negative) within each subgroup, but when all data are pooled together, the overall relationship shows the opposite pattern.
 
-This occurs because a third variable (often called a *confounder*) influences both the grouping structure and the outcome. When that variable is ignored, the aggregated data can give a misleading conclusion.
+The Simpson’s paradox reveals that pooled data can mislead interpretation, highlighting the importance of proper experimental design and data stratification.
+
+::: {.callout-tip collapse="true" title="More about Simpson's paradox"}
+
+The **Simpson’s paradox** occurs because a third variable (often called a *confounder*) influences both the grouping structure and the outcome. When that variable is ignored, the aggregated data can give a misleading conclusion.
 
 A classic example is treatment effectiveness: a treatment may appear beneficial within both males and females separately, yet appear harmful when the sexes are combined, simply because the distribution of males and females differs across treatment groups.
 
 Simpson’s paradox highlights the importance of stratification, careful experimental design, and understanding the data-generating process before interpreting aggregated results.
 
+:::
 
-#### **Mass vs. caudal fin length**
+##### **Is there a relationship between weight and caudal fin size?**
 
-Is there a relationship between weight and caudal fin size?
+Here we will look at data per strain (color) and sex (shape).
 
 ```{r mass_fin}
 
@@ -395,17 +483,17 @@ mass_fin <- ggplot(
 ) +
   geom_point(
     aes(color = strain,
-        shape = strain),
-    size = 2.5,
-    alpha = 0.7
+        shape = sex),
+    size = 3,
+    alpha = 0.8
   ) +
   scale_color_manual(values = c("skyblue1", "coral", "seagreen3")) +
   labs(
-    title = "Caudal fin length and body mass | Per strain",
+    title = "Caudal fin length and body mass | Per strain and Sex",
     x = "Caudal fin length (mm)",
     y = "Body mass (g)",
     color = "Strain",
-    shape = "Strain"
+    shape = "Sex"
   ) +
   theme(
     legend.position = c(0.2, 0.7),
@@ -413,11 +501,18 @@ mass_fin <- ggplot(
   )
 
 mass_fin
+
 ```
 
-#### **Caudal fin length vs. body length**
+> This plot shows that the caudal fin length only correlates with weight in the **TU** strain, while it appears similar between the **AB** and **TL** strains.
+
+
+##### **Is there a relationship between caudal fin length and body length?**
+
+Here, again, we will look at data per strain (color) and sex(shape).
 
 ```{r fin_len}
+
 fin_length <- ggplot(
   data = zebrafish_clean,
   aes(x = caudal_fin_length_mm,
@@ -425,8 +520,8 @@ fin_length <- ggplot(
 ) +
   geom_point(
     aes(color = strain,
-        shape = strain),
-    size = 2,
+        shape = sex),
+    size = 3,
     alpha = 0.8
   ) +
   scale_color_manual(values = c("darkorange", "limegreen", "purple")) +
@@ -435,7 +530,7 @@ fin_length <- ggplot(
     x = "Caudal fin length (mm)",
     y = "Body length (mm)",
     color = "Strain",
-    shape = "Strain"
+    shape = "Sex"
   ) +
   theme(
     legend.position = c(0.85, 0.15),
@@ -446,16 +541,16 @@ fin_length
 
 ```
 
-#### **Facet by strain, color by sex**
+These plots are not simple to interpret. An alternative is to `facet` the plots. Let's see how these plots look when the points are colored by sex and faceted by strain.
 
-Include zebrafish sex: 
+##### **Facet by strain, color by sex**
 
 ```{r facet}
 
 ggplot(
   zebrafish_clean,
   aes(x = caudal_fin_length_mm,
-      y = body_mass_g)
+      y = body_length_mm)
 ) +
   geom_point(aes(color = sex)) +
   scale_color_manual(
@@ -463,10 +558,10 @@ ggplot(
     na.translate = FALSE
   ) +
   labs(
-    title = "Caudal fin length and body mass",
+    title = "Caudal fin length and body length",
     subtitle = "Male and female zebrafish by strain",
     x = "Caudal fin length (mm)",
-    y = "Body mass (g)",
+    y = "Body length (mm)",
     color = "Sex"
   ) +
   theme(
@@ -477,29 +572,35 @@ ggplot(
 
 ```
 
+---
 
-#### **Matrix of plots for several variables**
+#### **Step 7 | Explore multiple variables at once**
+
+##### **Matrix of plots**
 
 `GGally::ggpairs()` creates a matrix of plots that shows relationships between multiple variables at once. It works with both numeric (quantitative) and categorical (discrete) variables.
 
-By default:
+::: {.callout-note collapse="true" title="More about ggpairs plot"}
 
-* **Two numeric variables**
+  The `GGally::ggpairs()` plot, by default, chooses the following organization:
+  
+  * **Two numeric variables**
+  
+    * Lower triangle: scatterplots
+    * Upper triangle: correlation coefficients (overall and by group)
+  
+  * **One numeric and one categorical variable**
+  
+    * Lower triangle: coloured histograms
+    * Upper triangle: boxplots
+  
+  * **Two categorical variables**
+  
+    * Stacked bar charts
+  
+  In short, `ggpairs()` automatically chooses sensible plot types depending on the type of variables being compared, making it useful for quick exploratory data analysis.
 
-  * Lower triangle: scatterplots
-  * Upper triangle: correlation coefficients (overall and by group)
-
-* **One numeric and one categorical variable**
-
-  * Lower triangle: coloured histograms
-  * Upper triangle: boxplots
-
-* **Two categorical variables**
-
-  * Stacked bar charts
-
-In short, `ggpairs()` automatically chooses sensible plot types depending on the type of variables being compared, making it useful for quick exploratory data analysis.
-
+:::
 
 ```{r ggpairs, message=FALSE, warning=FALSE}
 
@@ -511,24 +612,226 @@ GGally::ggpairs(zebrafish_clean,
 
 ```
 
-#### **Key observations from EDA**
+---
 
-From this exploratory analysis we observe:
+#### **Step 8 | Principal Component Analysis (PCA)**
 
-* The dataset contains three strains with different sample sizes.
-* There are some missing values, but most variables are well populated.
-* Strains differ clearly in morphological characters.
-* Body mass varies substantially across strains and sex.
-* Some numeric variables are strongly correlated.
+**Principal Component Analysis (PCA)** is a dimensionality reduction method.
+It transforms a set of possibly correlated variables into a new set of variables called **principal components (PCs)**.
 
-These findings would guide subsequent modelling decisions, such as:
+::: {.callout-tip collapse="true" title="More about PCA"}
 
-* Including strains as a predictor in regression models.
-* Checking for multicollinearity.
-* Considering stratified analyses by sex.
+**What does PCA do?**
+
+* It creates new variables that are:
+
+  * Linear combinations of the original variables
+  * Uncorrelated with each other
+  * The first principal component (PC1) captures the **largest amount of variance** in the data.
+  * The second principal component (PC2) captures the largest remaining variance, and so on.
+
+Typically, the first few PCs explain most of the variability.
+
+** Why is PCA useful in exploratory data analysis (EDA)?**
+
+In EDA, PCA helps you:
+
+* **Reduce dimensionality**
+  Summarise many variables using only 2–3 components.
+
+* **Visualise structure**
+  Plot PC1 vs PC2 to detect:
+
+  * Clusters
+  * Group separation (e.g., treatment vs control)
+  * Outliers
+
+* **Detect technical effects**
+  Identify batch effects or unwanted variation.
+
+* **Understand variable relationships**
+  Loadings show which variables drive each component.
+
+**Conceptual intuition**
+
+PCA finds the directions in the data space where:
+
+  * The data vary the most.
+  * The structure is most visible.
+  
+Instead of looking at each variable separately, PCA looks at **overall patterns of variation**.
+
+**PCA in one sentence**
+
+PCA is a mathematical tool that simplifies complex, multidimensional data so that we can explore patterns, structure, and variability more easily.
+
+:::
+
+##### **PCA calculation**
+
+For this analysis, we can use the `stats::prcomp()` function from base R, or a tidy version of it using the [recipes](https://recipes.tidymodels.org) package from [tidymodels](https://www.tidymodels.org) to perform a [Principal Component Analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis). 
+
+For future use of the `recipes` package, follow [this excellent article](https://www.tidymodels.org/start/recipes/) to get started with using `tidymodels`.
+
+1. Lets start by using the base R PCA function `prcomp()`. 
+
+```{r pca_prcomp}
+
+#
+# Compute PCA
+#
+pca_prcomp <-
+  zebrafish_clean |> 
+  # select only numerical columns
+  dplyr::select(body_length_mm, body_width_mm, caudal_fin_length_mm, body_mass_g) |> 
+  # scaling is very important in biomedical data where variables have different units 
+  prcomp(scale. = TRUE)
+
+#
+# Look at the object returned by the function
+#
+str(pca_prcomp)
+summary(pca_prcomp)
+
+#
+# Look at the loadings which show how each original variable
+# contributes to each principal component
+#
+pca_prcomp$rotation
+
+#
+# Now lets plot the first two components
+#
+
+# Format as a data frame and add categorical variables
+  # Since prcomp() preserves row order, we can safely attach data variables 
+  # (as long as no reorder or filtering of rows was performed before the PCA).
+pca_scores <- as.data.frame(pca_prcomp$x) |>
+  bind_cols(zebrafish_clean |> select(strain, treatment, sex, year))
+
+# Calculate the variance explained by each principal component
+var_explained <- (pca_prcomp$sdev^2) / sum(pca_prcomp$sdev^2)
+
+# Plot the Principal Components (PC1 and PC2)
+pca_prcomp_plot <-
+  ggplot(pca_scores, aes(x = PC1, y = PC2)) +
+  labs(
+    x = paste0("PC1 (", round(var_explained[1] * 100, 1), "%)"),
+    y = paste0("PC2 (", round(var_explained[2] * 100, 1), "%)"),
+    title = "PCA: first two principal components"
+  )
+
+# Combine plots using patchwork to compare PCAs colored by different variables 
+(pca_prcomp_plot + geom_point(aes(color = sex), size = 1.5, alpha = 0.7)) +
+(pca_prcomp_plot + geom_point(aes(color = treatment), size = 1.5, alpha = 0.7)) +
+(pca_prcomp_plot + geom_point(aes(color = strain), size = 1.5, alpha = 0.7)) +
+(pca_prcomp_plot + geom_point(aes(color = year), size = 1.5, alpha = 0.7))
+
+```
+
+2. Now the same PCA calculation but using the tidy version with the `recipes` package.
+
+```{r pca_recipe}
+
+zebrafish_recipe <-
+  recipe(~., data = zebrafish) |> 
+  update_role(strain, treatment, sex, year, new_role = "id") |> 
+  step_naomit(all_predictors()) |> 
+  step_normalize(all_predictors()) |>
+  step_pca(all_predictors(), id = "pca") |> 
+  prep()
+
+zebrafish_pca <- 
+  zebrafish_recipe |> 
+  tidy(id = "pca") 
+
+zebrafish_pca
+
+```
+
+The `value` column here is the loadings. For each component, the `value` tells us the linear combination of weights for each variable that contributes to that component. 
+
+Plot these loadings by principal component:
+
+```{r loadings}
+
+zebrafish_pca |>
+  mutate(terms = tidytext::reorder_within(terms, 
+                                          abs(value), 
+                                          component)) |>
+  ggplot(aes(abs(value), terms, fill = value > 0)) +
+  geom_col() +
+  facet_wrap(~component, scales = "free_y") +
+  tidytext::scale_y_reordered() +
+  scale_fill_manual(values = c("#addd8e", "#006837")) +
+  labs(
+    x = "Absolute value of contribution",
+    y = NULL, fill = "Positive?"
+  ) 
+
+```
+
+Plot PCA loadings + scores
+
+```{r loadings_scores}
+
+# Format pca loadings to wide format
+pca_wide <- zebrafish_pca |> 
+  tidyr::pivot_wider(names_from = component, id_cols = terms)
+
+# Set the style of the arrows
+arrow_style <- arrow(length = unit(.05, "inches"),
+                     type = "closed")
+
+# Plot the PCA
+pca_plot <-
+  juice(zebrafish_recipe) |>
+  ggplot(aes(PC1, PC2)) +
+  geom_point(aes(color = strain, shape = strain), 
+             alpha = 0.8, 
+             size = 2) +
+  scale_colour_manual(values = c("#fe9929","#41b6c4","#f768a1")) 
+
+pca_plot +
+  geom_segment(data = pca_wide,
+               aes(xend = PC1, yend = PC2), 
+               x = 0, 
+               y = 0, 
+               arrow = arrow_style) + 
+  geom_text(data = pca_wide,
+            aes(x = PC1, y = PC2, label = terms), 
+            hjust = 0, 
+            vjust = 1,
+            size = 5, 
+            color = '#0A537D') 
 
 
-#### **Conclusion**
+```
+
+---
+
+#### **Step 9 | Synthesis and next analytical steps**
+
+From this EDA we observe:
+
+* Clear morphological separation between strains.
+* Evidence of sex-based differences.
+* Strong correlations among growth-related traits.
+* Multivariate clustering in PCA space.
+* Risk of misleading interpretation when pooling data.
+
+These observations suggest:
+
+* Strain must be included in modelling.
+* Sex may act as a covariate.
+* Multicollinearity must be checked.
+* Stratified analyses may be required.
+
+> EDA does not test hypotheses. It generates biologically grounded questions for modelling.
+
+---
+
+##### **Conclusion**
 
 Exploratory data analysis is not a formal statistical test.
 It is a structured process of:
@@ -538,5 +841,6 @@ It is a structured process of:
 3. Detecting potential issues.
 4. Generating hypotheses.
 
-In applied biomedical research, careful EDA prevents modelling errors and strengthens the interpretability of results.
+> In applied biomedical research, careful EDA prevents modelling errors and strengthens the interpretability of results.
+
 

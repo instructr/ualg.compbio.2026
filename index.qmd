@@ -32,7 +32,7 @@ The following topics will be addressed in the 'Intro to R data analysis' (Module
 
 + **Introduction to R programming**;
 + **Descriptive statistics using R**;
-+ **Brief exploratory data analysis of biological datasets**.
++ **Brief exploratory data analysis of a biological dataset**.
 
 <br>
 
@@ -52,9 +52,11 @@ The **evaluation for Module 1: Intro to R data analysis** will be the **summatio
 
 ### Classes documents
 
-<!-- XPTO | TO BE UPDATED -->
+Additional files required for exercises
 
-  - Additional file required for exercises | [Mice diet dataset](data/mice_data.txt)
+  - 1. [Mice diet dataset](data/mice_data.txt)
+  
+  - 2. [Zebrafish morphometrics dataset](data/zebrafish.csv)
 
 ---
 

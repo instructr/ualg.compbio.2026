@@ -4,7 +4,7 @@
 
 - First, we will discuss the purpose of learning to program in R. 
 - Then, you will be introduced on how to install and use R and RStudio.
-- Next, you will follow an interactive learning tutorial, self-paced, using the *swirl* package that you will be installing in your R.
+- Next, you will follow an interactive learning tutorial, self-paced, using the `swirl` package.
 - Finally, you will recap some important notes about R programming. 
 
 **Questions to debate in class:**  
@@ -13,14 +13,13 @@
 - Why do we use R?   
 - Are there other alternatives to R?   
 
-***
+---
 
 ##### **1. Using RStudio**
 
 The practical classes for this course require R and RStudio.
 
-Please read the tab "Software requirements" to get information on how to install R and RStudio in your system, or how to use the software installed at the virtual machines from UAlg.
-
+Please read the tab "Software requirements" to get information on how to install R and RStudio in your system, or how to use your RStudio Server account from the virtual machines at UAlg.
 
 The friendliest way to learn R is to use **RStudio** which is an Integrated Development Environment - **IDE** - that includes:    
 
@@ -34,10 +33,10 @@ The friendliest way to learn R is to use **RStudio** which is an Integrated Deve
 
 <br>
 
-##### **2. Install the *swirl* package & Follow the guided course**
+##### **2. Load the *swirl* package & Follow the guided course**
 
 After you become familiarized with RStudio, we shall progress to the **interactive, self-paced, hands-on tutorial** provided by the *swirl* package. You will *learn R inside R*. 
-For more info about this package, visit: https://swirlstats.com/
+For more info about this package, visit: <https://swirlstats.com/>
 
 <br>
 
@@ -47,10 +46,9 @@ You can copy-paste the code, and press enter after each command.
 
 ```{r swirl, eval=FALSE}
 
-install.packages("swirl")   # Install swirl - this step will take around 2 minutes
+# install.packages("swirl")   # Install swirl (if not installed)
 
 library("swirl")            # Load the swirl package to make it available for you to use
-
 swirl()                     # Start swirl
 
 ```

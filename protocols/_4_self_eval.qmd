@@ -6,15 +6,15 @@ The first task for today is to complete an individual self-evaluating exam, wher
 This is **not for performance evaluation**, meaning that the correctness of your answers will not be evaluated, but your **application, participation, helping your colleagues** will be evaluated. 
 It is mostly intended for you to identify your difficulties and consolidate knowledge.
 
-1. For this exam, please install the `ualg.compbio` package:
+1. For this self-evaluation exam, the `ualg.compbio` package must be installed (not needed if you are using the RStudio Server account):
 
 ```{r install_compbio_package, eval=FALSE, echo=TRUE}
 
 # Make sure you have the package `pak` installed:
-install.packages("pak")
+# install.packages("pak")
 
 # Now you can install the ualg.compbio package from GitHub:
-pak::pkg_install("instructr/ualg.compbio")
+# pak::pkg_install("instructr/ualg.compbio")
 
 ```
 

@@ -4,6 +4,9 @@ output:
   html_document:
     smooth_scroll: true
     fig_caption: false
+execute:
+  out-width: "100%"
+  dpi: 300
 ---
 
 ## **Hands-on Protocols** 
