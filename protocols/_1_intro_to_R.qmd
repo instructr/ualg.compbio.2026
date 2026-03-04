@@ -46,7 +46,7 @@ You can copy-paste the code, and press enter after each command.
 
 ```{r swirl, eval=FALSE}
 
-# install.packages("swirl")   # Install swirl (if not installed)
+install.packages("swirl")   # Install swirl (once if not installed)
 
 library("swirl")            # Load the swirl package to make it available for you to use
 swirl()                     # Start swirl
