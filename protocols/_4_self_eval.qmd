@@ -10,11 +10,15 @@ It is mostly intended for you to identify your difficulties and consolidate know
 
 ```{r install_compbio_package, eval=FALSE, echo=TRUE}
 
-# Make sure you have the package `pak` installed:
-# install.packages("pak")
+# Make sure the `remotes` package is installed:
+  # TRUE if installed, FALSE otherwise
+"remotes" %in% rownames(installed.packages())  
 
-# Now you can install the ualg.compbio package from GitHub:
-# pak::pkg_install("instructr/ualg.compbio")
+# If FALSE, uncomment this line to install the package:
+# install.packages("remotes")
+
+# Now you can install the `ualg.compbio` package from GitHub:
+remotes::install_github("instructr/ualg.compbio")
 
 ```
 
