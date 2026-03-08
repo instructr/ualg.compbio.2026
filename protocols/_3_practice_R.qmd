@@ -4,7 +4,7 @@
 
 To practice your newly acquired R skills, you will be doing a brief summary statistics analysis of a simple dataset. 
 
-> **The scientific experiment** | You are interested in determining if a high-fat diet causes mice to gain weight, after one month. For this study, you obtained data from 60 mice, where half were fed a lean-diet, and the other half a high-fat diet. All other living conditions were the same. Four weeks after, all mice were weighted, and the sex and age were also recorded. The results were saved in `mice_data.txt` file. 
+> **The scientific experiment** | You are interested in determining if a high-fat diet causes mice to gain weight, after one month. For this study, you obtained data from 60 mice, where half were fed a lean-diet, and the other half a high-fat diet. All other living conditions were the same. Four weeks after, all mice were weighted, and the sex and age were also recorded. The results were saved in [`mice_data.txt`](data/mice_data.txt) file. 
 
 ##### **Start by discussing the experimental design**
 
@@ -23,9 +23,64 @@ Recall the most common variable types. The types of the variables will define th
 
 <br>
 
-##### **Create a new R script file** 
+##### **Organize your data analysis project**
 
-In order to save your work, you must create a new R script file. Go to `File > New File > R Script`. A blank text file will appear above the console. Save it to your project folder with the name `compBiol_mice.R`
+To keep your files organized and easy to find, it's a good idea to set up a clear naming system before you start collecting data for your thesis (or any other research-related data analysis). 
+
+A file naming convention is a consistent way to name files so it's clear what's inside and how each file connects to others. This helps you quickly understand and locate files, avoiding confusion or lost data later on.
+
+**1. Create a directory for the computatinal biology classes.** 
+
+A key part of good data management is organizing your data effectively. This means planning how you’ll name files, arrange folders, and show relationships between them.   
+Researchers should set up folder structures that reflect how records were created and align with their workflows. Doing this improves clarity, makes it easier to save, find, and archive files, and supports collaboration across teams.
+
+**Establishing a clear file structure and naming system before collecting data ensures consistency and helps team members work more efficiently together.**
+
+We propose the following **minimal** structure inside a folder that identifies the :
+
+    project_nickname/    
+    ├── data/    
+    │ ├── raw/    
+    │ └── processed/
+    │ └── metadata/    
+    ├── scripts/    
+    ├── output/    
+    └── docs/   
+
++ **project_nickname**: root folder for the Rproject (for example: r_comp_biol)    
++ **data/raw**: original, unmodified data   
++ **data/processed**: cleaned or transformed data ready for analysis
++ **data/metadata**: description of the contents in the data folder (learn more about [metadata](https://rdmkit.elixir-europe.org/metadata_management))
++ **scripts**: code for processing and analysis   
++ **output**: figures, tables, and final results   
++ **docs**: project documentation with supplementary files that are not data or analysis related
+
+<br>
+
+**2. Create an RStudio project**
+
+RStudio Projects are a great functionality, easing the transition between dataset analyses, and allowing a fast navigation to your analysis/working directory. To create a new project:
+
+    File > New Project... > New Directory > New Project
+    Directory name: comp_biol_r
+    Create a project as a subdirectory of: ~/
+                               Browse... (folder that you created for the computational biology classes)
+    Create Project
+    
+Projects should be personalized by clicking on the menu in the right upper corner. The general options - **R General** - are the most important to customize, since they allow the definition of the RStudio "behavior" when the project is opened. The following suggestions are particularly useful:
+
+    Restore .RData at startup - No (for analyses with +1GB of data, you should choose "No")
+    Save .RData on exit - Ask
+    Always save history - Yes
+
+![Figure 2: Customize Project](images/projOptions1_2.png)
+
+
+<br>
+
+**3. Create a new R script file** 
+
+In order to save your work, you must create a new R script file. Go to `File > New File > R Script`. A blank text file will appear above the console. Save it to your project folder with the name `comp_biol_mice.R`
 
 ::: {.callout-note collapse="true" title="Why do we need scripts?"}
 
