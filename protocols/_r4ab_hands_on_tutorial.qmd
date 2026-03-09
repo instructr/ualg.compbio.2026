@@ -24,6 +24,8 @@ This protocol is divided into **7 parts**, each one identified by a **Title**, *
 To start we will open RStudio. This is an Integrated Development Environment - **IDE** - that includes syntax-highlighting **text editor** (1 in Figure1), an **R console** to execute code (2 in Figure1), as well as **workspace** and **history** management (3 in Figure1), and tools for **plotting** and **exporting** images, **browsing** the workspace, managing **packages** and **viewing** html/pdf files created within RStudio (4 in Figure1).
 
 ![Figure 1: RStudio Graphical User Interface (GUI)](images/rstudio-ide-2018.png){width="600px"}
+
+
 Projects are a great functionality, easing the transition between different dataset analyses, and allowing a fast navigation to your analysis/working directory. To create a new project:
 
 ```         
