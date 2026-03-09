@@ -37,7 +37,8 @@ Start by:
   - 1. **Creating a new folder** for this mini-project inside the folder that you created for the computational biology classes;
   - 2. **Create an Rproject** inside this folder;
   - 3. **Create an R script** to save your mini-project data analysis (if you need help with these steps, recall the instructions in the `3. Practicing R` protocol);
-  - 4. Start the data analysis by **loading the required packages and the dataset**.
+  - 4. Download the dataset [here](https://instructr.github.io/ualg.compbio.2026/data/zebrafish.csv) and save it in your `data` folder.
+  - 5. Start the data analysis by **loading the required packages and the dataset**.
 
 
 ```{r setup, warning=FALSE, message=FALSE}
