@@ -128,11 +128,9 @@ We remove incomplete cases for this exploratory exercise:
 
 zebrafish_clean <- 
   zebrafish |>
-  drop_na()
-
-# Now we transform the character variables into factors 
+  drop_na() |>
+  # transform the character variables into factors 
   # to facilitate data modelling and visualization
-zebrafish_clean |>
   mutate(strain = as.factor(strain),
          treatment = as.factor(treatment),
          sex = as.factor(sex))
